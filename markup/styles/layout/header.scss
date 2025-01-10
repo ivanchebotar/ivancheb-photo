@@ -1,0 +1,247 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site
+// -----------------------------------------------------------------------------
+.header {
+  @include transition (padding background-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 18px 0;
+  background-color: transparent;
+  border-bottom: 1px solid $primary;
+
+  .nav-active & {
+    width: 100% !important;
+  }
+
+  .fixed-position & {
+    padding: 12px 0;
+    width: 100%;
+    background-color: $primary;
+  }
+
+  &--alt {
+    padding: 0;
+    border: 0;
+
+    .fixed-position & {
+      padding: 0;
+    }
+  }
+}
+
+.sticky-wrap-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  flex: 0 0 auto;
+}
+
+.header-holder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  position: static;
+  z-index: 1;
+  width: 40px;
+
+  @include media('>=tablet') {
+    width: 60px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .btn {
+    margin: 0 30px 0 0;
+    
+    @include media('<=tablet') {
+      display: none;
+    }
+  }
+}
+
+.menu__opener {
+  a {
+    display: block;
+    width: 32px;
+    height: 15px;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    @include media('>=tablet') {
+      width: 40px;
+    }
+
+    &:after {
+      @include transition (transform top);
+      content: '';
+      width: 100%;
+      height: 3px;
+      display: block;
+      background-color: $secondary;
+      position: absolute;
+      left: 0;
+
+      @include media('>=tablet') {
+        top: 0;
+      }
+    }
+    
+    
+    &:after {
+      bottom: 0;
+
+      .nav-active & {
+        top: 6px;
+        bottom: auto;
+        transform: rotate(45deg);
+      }
+    }
+
+    span {
+      @include transition (transform top);
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $secondary;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @include media('>=tablet') {
+        top: auto;
+        bottom: 0;
+      }
+
+      .nav-active & {
+        top: 6px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.menu-holder {
+  @include transition (opacity);
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background: center / cover no-repeat;
+  user-select: none;
+  touch-action: none;
+
+  .nav-active & {
+    opacity: 1;
+    visibility: visible;
+    user-select: auto;
+    touch-action: auto;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($primary, 0.7);
+  }
+}
+
+.menu-holder__list {
+  @extend .list-reset;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  
+  > li {
+    text-align: center;
+    margin: 0 0 18px;
+    
+    a {
+      @include transition (color letter-spacing);
+      color: $white;
+      font-size: 16px;
+      font-weight: $font-weight-light;
+      letter-spacing: 8px;
+      text-transform: lowercase;
+
+      @include media('>=tablet') {
+        font-size: 18px;
+      }
+
+      @include media('>=desktop') {
+        font-size: 20px;
+      }
+
+      &:hover {
+        color: $secondary;
+        letter-spacing: 10px;
+      }
+
+      &.anchor-active {
+        color: $secondary;
+        letter-spacing: 10px;
+      }
+
+      &.active {
+        color: $secondary;
+        letter-spacing: 10px;
+      }
+    }
+  }
+}
+
+.menu-holder__contacts {
+  @extend .list-reset;
+  display: flex;
+  position: absolute;
+  left: 50%;
+  bottom: 80px;
+  transform: translate(-50%);
+
+  @include media('>=tablet') {
+    bottom: 40px;
+  }
+
+  > li {
+    margin: 0 15px;
+
+    a {
+      @include transition (color);
+      font-size: 20px;
+      color: $white;
+
+      &:hover {
+        color: $secondary;
+      }
+    }
+  }
+}

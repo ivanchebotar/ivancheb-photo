@@ -1,0 +1,25 @@
+.btn {
+  font-family: $font-family-secondary;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 0;
+  border: 0;
+  padding: 15px 60px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+
+  &--primary {
+    color: $white;
+    background-color: $primary;
+
+    &:hover {
+      color: $primary;
+      background-color: $white;
+      border-color: $primary;
+    }
+  }
+}
